@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+	{{> header }}
+	<body>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-6 offset-md-3 box-shadow">
+					<div class="card shadow-lg mt-5 bg-white rounded">
+						<div class="card-body p-5">
+							<h3 id="homeTitle" class="text-center mb-5 text-success">Register</h3>
+							{{#if message}}
+								<h6 class="alert alert-{{msgStatus}} mt-4">{{message}}</h6>
+							{{/if}}
+
+							<form action="/users/registerExc" method="POST">
+								<div class="form-group mt-2">
+									<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+								</div>
+
+								<div class="form-group mt-2">
+									<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+								</div>
+				
+								<div class="form-group mt-2">
+									<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+								</div>
+
+								<div class="form-group mt-2 mb-4">
+									<input type="password" class="form-control" id="passwordConfrim" name="passwordConfrim" placeholder="Confirm Password" required>
+								</div>
+
+								<a href="/" type="button" class=" btn btn-outline-dark btn-sm" >< Back</a>
+								<button type="submit" class="btn btn-success btn-sm" style="float:right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

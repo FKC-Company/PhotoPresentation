@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	{{> header }}
+	<body>
+		<div class="container mt-5">
+			<div style="float: left;">
+				<h3>イベント管理画面</h3>
+			</div>
+			<div  style="float: right;">
+				<a href="/registerWin" type="button"class="btn btn-success">+登録</a>
+			</div>
+			<table class="table table-hover table-light">
+				<thead>
+					<tr>
+					<th scope="col">EventId</th>
+					<th scope="col">EventName</th>
+					<th scope="col">RoomName</th>
+					<th scope="col">FolderName</th>
+					<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each EventRows}}
+						<tr>
+							<th scope="row">{{ event_id }}</th>
+							<td>{{ event_name }}</td>
+							<td>{{ room_name }}</td>
+							<td>{{ folder_name }}</td>
+							<td>
+								<a href="#">Edit</a>
+								<a href="#">Delete</a>
+							</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

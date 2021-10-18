@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	{{> header }}
+	<body>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-8 offset-md-2 box-shadow">
+					<div class="card shadow-lg mt-5 bg-white rounded">
+						<div class="card-body p-5">
+							{{#if message}}
+								<h6 class="alert alert-{{msgStatus}} mt-4">{{message}}</h6>
+							{{/if}}
+
+							<form action="/auth/login" method="POST" class="p-3">
+								<h3 id="homeTitle" class="text-center mb-5 text-success">Login</h3>
+								<div class="form-group">
+									<input type="email" value="unyamka@gmail.com" class="form-control" id="email" name="email" placeholder="Email" required>
+								</div>
+
+								<div class="form-group mt-2">
+									<input type="password" class="form-control" value="123" id="password" name="password" placeholder="Password" required> 
+								</div>
+
+								<div class="form-group mt-4">
+									<a href="/" type="button" class=" btn btn-outline-dark btn-sm m-1" >< Back</a>
+									<button type="submit" class="btn btn-success btn-sm m-1" style="float:right">&nbsp;&nbsp;Login&nbsp;&nbsp;</button>
+									<a href="users/register" type="button" class="btn btn-dark btn-sm m-1" style="float:right">Register</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

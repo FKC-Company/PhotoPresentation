@@ -1,0 +1,355 @@
+body  {
+    /* background-color: #212529; */
+}
+  
+body.darkMode  {
+    background-color: #212529 !important;
+}
+
+#js-local-stream  {
+    width: 100%;
+}
+#disabler {
+    position: absolute;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background: #0000007d;
+    display: none;
+}
+
+#loadingMsg {
+    float: left;
+    padding-left: 80px;
+    padding-right: 80px;
+    position: absolute;
+    left: 45%;
+    margin: 0px 0px 0px 0px;
+    border-radius: 0px;
+}
+
+.spinnerCustom  {
+    border-width: 2px !important;
+}
+
+.darkMode nav {
+    background-color: #41464b;
+}
+
+.darkMode .row {
+    /* background-color: #212529; */
+}
+
+.darkMode .row .col {
+    color: white;
+}
+
+.darkMode .swiperBody  {
+    background-color: #212529;
+}
+
+.row {
+    --bs-gutter-x: 0rem ;
+}
+marquee {
+    padding: 8px;
+    font-size: 20px;
+    background-color: #7a7e82;
+    color: #f8f9fa;
+}
+.darkMode marquee {
+    background-color: #198754;
+}
+
+.setActive {
+    color:#fff !important;
+    background-color:#7a7e82 !important;
+}
+
+.darkMode .setActive {
+    color:#fff !important;
+    background-color:#198754 !important;
+}
+
+
+.swiperBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 30vh;  */
+    background: #fff;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    background-color:#e9ecef;
+    margin: 0;
+    padding: 0;
+}
+.swiper-container {
+    width: 100%;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 400px;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.contentBody {
+    width: 400px;
+    height: 320px;
+    overflow: hidden;
+    background-color: #6c757d;
+}
+.contentBody  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.detail {
+    padding: 25px 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.detail h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.detail span {
+    display: block;
+    font-size: 16px;
+    color: #f44336;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+} 
+
+#setList  {
+    cursor: pointer;
+    border-radius: 0;
+    height: 100%; 
+    overflow-y: auto; 
+    max-height: 400px;
+}
+
+#role {
+    position: absolute;
+    z-index: 10;
+}
+
+.pictureTop {
+    width: 93%;
+    height: 76%;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 59%;
+    border:1px solid #cacaac;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.pictureTop  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+pre { white-space: pre-wrap; }
+
+#descriptionTxt {
+    white-space: pre-wrap;
+}
+
+.descriptionTxt  {
+    height: 100%;
+    width: 100%;
+    overflow-y:auto;
+    position:absolute;
+}
+
+#titleSetYear {
+    position: absolute;
+    width: 100%;
+    top: 7%;
+}
+
+#videoPlayBtn {
+    border: 5px solid #212529bd;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    position: absolute;
+    transition: transform .2s;
+    margin: auto;
+    left: 37%;
+    top: 32%;
+    padding-left: 6px;
+}
+
+    #videoPlayBtn:hover  {
+        transform: scale(1.2);
+    }
+
+    #videoPlayBtn svg path  {
+        /* fill: #41464b; */
+    }
+
+.modal-body {
+    padding: 1px;
+}
+
+#proPicImg {
+    border: 2px solid white;
+}
+/* 
+video::-webkit-media-controls-fullscreen-button {
+    
+}
+video::-webkit-media-controls-play-button {
+    display: none;
+}
+video::-webkit-media-controls-play-button {
+    display: none;
+}
+video::-webkit-media-controls-timeline {
+    display: none;
+}
+video::-webkit-media-controls-current-time-display{
+    display: none;
+}
+video::-webkit-media-controls-time-remaining-display {
+    display: none;
+}
+video::-webkit-media-controls-time-remaining-display {
+    display: none;
+}
+video::-webkit-media-controls-mute-button {
+    display: none;
+}
+video::-webkit-media-controls-toggle-closed-captions-button {
+    display: none;
+}
+video::-webkit-media-controls-volume-slider {
+    display: none;
+}
+
+video::-webkit-media-controls, video::-moz-media-controls, video::-o-media-controls, video::-ms-media-controls {   
+    display: none !important; 
+} */
+
+.modal1 {
+    background:rgba(0,0,0,0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 600000000;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s ease-out;
+}
+
+.modal1.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal1 p {
+    color: white;
+    font-size: 2rem;
+    position:absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -5%);
+}
+
+.full-img, .full-video {
+    position: absolute;
+    max-height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: all 0.25s ease-out;
+}
+.full-video {
+    height: 55%; 
+}
+.full-img.open, .full-video.open {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#nextBtnSlide ,#prevBtnSlide   {
+    cursor: pointer;
+    position: absolute;
+    font-size: 50px;
+    color: white;
+    top: 50%;
+    border-radius: 50%;
+    width: 73px;
+    text-align: center;
+    height: 67px;
+    padding: 0px 0px 0px 2px;
+    user-select: none;
+}
+    #nextBtnSlide  {
+        right: 5%;
+    }
+    #prevBtnSlide  {
+        left: 5%;
+    }
+
+    #nextBtnSlide:active  {
+        color: #6c757d;
+    }
+    #prevBtnSlide:active  {
+        color: #6c757d;
+    }
+
+
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+      
+      @-webkit-keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+      }
+      
+      @keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+      }
+
+#recordingLamp  {
+    position: absolute; 
+    margin: 15px 0px 0px 15px;
+    position: absolute;
+    margin: 20px 0px 0px 20px;
+    width: 20px;
+    height: 20px;
+    animation: .65s linear infinite spinner-grow;
+    -webkit-animation: .65s linear infinite spinner-grow;
+    display: none;
+}

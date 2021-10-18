@@ -1,0 +1,79 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+	{{> header }}
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+	<body>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-8 offset-md-2 box-shadow">
+					<div class="card shadow-lg mt-5 bg-white rounded">
+						<div class="card-body p-5">
+							<h3 id="homeTitle" class="text-center mb-5 text-success">イベント登録</h3>
+
+							<form action="/users/registerExc" method="POST">
+
+								<div class="form-group mt-2">
+									<span>Event name</span>
+									<input type="text" class="form-control" id="event_name" name="event_name" placeholder="Event name" required>
+								</div>
+				
+								<div class="form-group mt-2">
+									<span>Start date</span>
+									<input type="text" class="form-control" id="datepicker" name="datepicker" placeholder="datepicker" required>
+								</div>
+
+								<div class="form-group mt-2">
+									<span>Start time</span>
+									<input type="text" class="form-control" id="startTime" name="startTime" placeholder="startTime" required>
+								</div>
+
+								<div class="form-group mt-2">
+									<span>End time</span>
+									<input type="text" class="form-control" id="endTime" name="endTime" placeholder="End Time" required>
+								</div>
+
+								<br/>
+								<a href="/lists" type="button" class=" btn btn-outline-dark btn-sm" >< Back</a>
+								<button type="submit" class="btn btn-success btn-sm" style="float:right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+<script>
+
+	
+$(function() {
+	$("#datepicker").datepicker();
+});
+
+$('#startTime, #endTime').timepicker({
+	timeFormat: 'hh:mm',
+	interval: 30,
+	minTime: '10',
+	maxTime: '6:00pm',
+	defaultTime: '11',
+	startTime: '00:00',
+	dynamic: false,
+	dropdown: true,
+	scrollbar: true
+});
+
+console.log("aaafff");
+</script>

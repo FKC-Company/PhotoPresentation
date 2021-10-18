@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	{{>header}}
+	<body>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-8 offset-md-2 box-shadow">
+					<div class="card shadow-lg p-5 mt-5 bg-white rounded">
+						<div class="card-body">
+							<h3 id="homeTitle" class="text-center mb-5 text-success">Join Meeting</h3>
+							{{#if status}}
+								<div class="alert alert-{{status}}" role="alert"> 
+									{{ message }}
+								</div>
+							{{/if}}
+							<form action="/join" method="POST">
+								<div class="form-group">
+									<input type="text" class="form-control" id="roomName" name="roomName"
+										{{#if isUrlJoin}}
+											value={{{roomName}}}
+											readonly
+											hidden="true"					
+										{{/if}}
+									 placeholder="Meeting Room Name" required /> 
+								</div>
+
+								<div class="form-group mt-2">
+									<input type="text" class="form-control" id="yourName" name="yourName" 
+										{{#if isUrlJoin}}
+											value={{{yourName}}}
+											readonly
+											hidden="true"
+										{{/if}}
+										placeholder="Your Name" required />
+								</div>
+
+								<div class="form-group mt-4"> 
+									<button type="submit" class="btn btn-success btn-lg m-1" 
+										style="float:right; {{#if isUrlJoin}} width:100%; {{/if}}">
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											Join Room
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</button>
+									<a href="/" type="button" 
+										{{#if isUrlJoin}} 
+											hidden="true"
+										{{/if}} 
+									class="btn btn-outline-dark btn-sm m-1">&nbsp;< Back&nbsp;</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
