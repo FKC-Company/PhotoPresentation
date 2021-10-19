@@ -207,7 +207,26 @@ exports.files = async (req, res) => {
 	const dataPath = "/data/"+eventRow.folder_name+'/'+setFolderName;
 	const publicPath = "public/"+dataPath;
 
-	let fileNames = fs.readdirSync(publicPath +'/slideData');
+	let fileNames;
+
+	try {
+		fileNames = fs.readdirSync(publicPath +'/slideData');
+	}
+	catch (err)  {
+		//nmk
+		// return res.json({
+		// 	status: 404,
+		// 	message: "File not found"
+		// });
+
+		console.log("error -------------------");
+
+		return res.render('meet/meetRoom',{
+			status: 404,
+			message: 'Create a meeting room'
+		});
+	}
+
 	async function readFile(path)  {
 		return new Promise((resolve, reject) => {
 		  	fs.readFile(path, 'utf8', function (err, data) {
@@ -219,6 +238,7 @@ exports.files = async (req, res) => {
 
 	let descriptionTxt = await readFile(publicPath + '/description/description.txt');
 	let mainPic = eventRow.folder_name +'/'+setFolderName+'/main/'+ fs.readdirSync(publicPath +'/main')[0];
+	let proPic = eventRow.folder_name +'/'+setFolderName+'/profilePicture/'+ fs.readdirSync(publicPath +'/profilePicture')[0];
 	let marqueeTxt = await readFile(publicPath + '/marqueeTxt/marquee.txt');
 
 	async function files()  {
@@ -245,11 +265,11 @@ exports.files = async (req, res) => {
 
 	let filesObjs = await files();
 
-
 	res.json({
 		status: "success",
 		mainPicPath: mainPic,
 		marqueeTxt: marqueeTxt,
+		proPic: proPic,
 		descriptionTxt: descriptionTxt,
 		filesObjects: JSON.stringify(filesObjs)
 	});

@@ -5,6 +5,7 @@ export default class PictureSlideClass  {
 	constructor(data)  {
 		this.mainPicPath = data.mainPicPath;
 		this.filesObjects = data.filesObjects;
+		this.proPic = data.proPic;
 		
 		this.setDisplay();
 		this.eventHandle();
@@ -39,6 +40,9 @@ export default class PictureSlideClass  {
 		});
 
 		$(".pictureTop img").attr("src", "data/"+this.mainPicPath);
+
+		console.log(this.proPic);
+		$("#proPicImg").attr("src", "data/"+this.proPic);
 
 		if(mySwiper != null)  {
 			mySwiper.destroy();

@@ -50,7 +50,6 @@ export default class SetClass {
 				setFolderName : setFolderName 
 			}).then(data => {
 
-				// console.log( data.thumbImg);
 				// let aaa = 'data:image/jpeg;base64,' + data.thumbImg;
 				// $("body").prepend("<img  src="+ aaa +" />");
 
@@ -58,9 +57,10 @@ export default class SetClass {
 
             let filesObjects = JSON.parse(data.filesObjects);
             new PictureSlideClass({
-					mainPicPath: data.mainPicPath,
-					filesObjects: filesObjects
-				});
+				mainPicPath: data.mainPicPath,
+				filesObjects: filesObjects,
+				proPic: data.proPic
+			});
 
             new TextClass({
 					marquee: data.marqueeTxt,
@@ -74,6 +74,7 @@ export default class SetClass {
 				$("#disabler").hide();
 
 			});
+
 		});
 
 		$("#setList a:first").click();
