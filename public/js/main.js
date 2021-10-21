@@ -27,5 +27,26 @@ $(".switchBtn input").on("click", function()  {
 		$("body").removeClass("darkMode")
 		.addClass("lightMode");
 	}	
-
 });
+
+$("#changeTheme").on("change", function()  {
+	var mode = $(this).val();
+	$("body").removeClass();
+
+	switch (mode) {
+		case "dark":
+			$("body").addClass("darkMode");
+			break;
+		case "light":
+			$("body").addClass("lightMode");
+			break;
+		case "yellow":
+			$("body").addClass("yellowMode");
+			break;
+		default:
+			$("body").addClass("darkMode");
+			break;
+	}
+});
+
+

@@ -36,17 +36,29 @@ body.darkMode  {
     background-color: #41464b;
 }
 
+#changeTheme  {
+    background: #6c757d;
+    color: white;
+    padding: 3px;
+}
+
 .darkMode .row {
     /* background-color: #212529; */
 }
 
 .darkMode .row .col {
-    color: white;
+    /* color: white; */
 }
 
 .darkMode .swiperBody  {
     background-color: #212529;
 }
+
+.uploadBtn  {
+    background-color: #6c757d;
+    color:white;
+}
+
 
 .row {
     --bs-gutter-x: 0rem ;
@@ -57,20 +69,52 @@ marquee {
     background-color: #7a7e82;
     color: #f8f9fa;
 }
-.darkMode marquee {
-    background-color: #198754;
+
+.lightMode .descriptionTxt  {
+    color: white;
 }
 
-.setActive {
-    color:#fff !important;
-    background-color:#7a7e82 !important;
+.darkMode marquee {
+    background-color: #41464b;
 }
 
 .darkMode .setActive {
     color:#fff !important;
-    background-color:#198754 !important;
+    background-color:#6c757d !important;
+}
+/* --------------   light mode  --------------------   */
+.lightMode .navbar, .yellowMode .navbar  {
+    background-color:#41464b;
 }
 
+.lightMode marquee, .yellowMode marquee   {
+    background-color: #8b9095;
+    color: white;
+}
+
+.lightMode .setActive, .yellowMode .setActive {
+    color: #fff !important;
+    background-color: #808891 !important;
+}
+
+.lightMode .swiperBody  {
+    background-color: white;
+}
+
+/* --------------   yellow mode  --------------------   */
+
+.yellowMode, .yellowMode .swiperBody {
+    background-color: #ffefbd;
+}
+
+.yellowMode .swiperBody {
+    background-color: #ffefbd;
+}
+
+.list-group-item  {
+    border: 0px;
+    border-bottom: 1px solid rgba(0,0,0,.125) !important;
+}
 
 .swiperBody {
     display: flex;
@@ -216,9 +260,6 @@ pre { white-space: pre-wrap; }
     padding: 1px;
 }
 
-#proPicImg {
-    border: 2px solid white;
-}
 /* 
 video::-webkit-media-controls-fullscreen-button {
     
@@ -270,7 +311,7 @@ video::-webkit-media-controls, video::-moz-media-controls, video::-o-media-contr
 
 .modal1.open {
     opacity: 1;
-    pointer-events: all;
+    pointer-events: all;    
 }
 
 .modal1 p {

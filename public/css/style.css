@@ -94,7 +94,7 @@ video {
 }
 
 body {
-  	background: #d6d6d6 !important;
+  	/* background: #d6d6d6 !important; */
 }
 
 #homeTitle {
@@ -147,4 +147,10 @@ body {
 }
 .statusWarning  {
 	/* color: black !important; */
+}
+
+#loginImg  {
+	/* background-image: url(./img/undraw_secure_login_pdn4.svg);
+	background-repeat: no-repeat; */
+	height: 250px;
 }

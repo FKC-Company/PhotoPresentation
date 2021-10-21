@@ -38,15 +38,24 @@
 
 			{{!-- <button id="start">Start camera</button> --}}
 
+			
 			<div class="collapse navbar-collapse d-flex flex-row-reverse float-right" id="navbarText">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active p-2">
-						{{!-- <label class="switchBtn">
+
+							{{!-- <label class="switchBtn">
 							<input type="checkbox" checked class="lightMode">
 							<span class="slider round"></span>
 						</label> --}}
-						<a class="btn btn-success btn-sm" href="/upload?eventId={{{ eventId }}}">Upload</a>
 
+						<select name="" id="changeTheme">
+							<option value="dark">Dark</option>
+							<option value="light">Light</option>
+							<option value="yellow">Yellow</option>
+						</select>
+					</li>
+					<li class="nav-item active p-2">
+						<a class="btn btn-sm uploadBtn" href="/upload?eventId={{{ eventId }}}">Upload</a>
 					</li>
 					<li class="nav-item active p-2">
 						<button type="button" class="btn btn-danger btn-sm" style="margin-right: 12px;" data-toggle="modal" data-target=".bd-example-modal-sm11">
@@ -91,7 +100,7 @@
 										<div id="recordingLamp" class="spinner-grow text-danger"></div>
 										<video id="js-local-stream" controls="false" height="100%" style="display: none;"></video>	
 
-										<div id="nonoStream" class="border w-100 h-100">
+										<div id="nonoStream" class="w-100 h-100">
 											<div style="width: 20%; margin: auto;">
 												<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-camera-video" viewBox="0 0 16 16">
 													<path stroke-width="1%" stroke="white" fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"/>
@@ -181,9 +190,49 @@
 <div class="modal1">
 	<div id="prevBtnSlide"><</div>
 
-	<img class="full-img" src="" alt="" >
+	<img class="full-img" src="" alt="" />
 	<video class="full-video" controls></video>
-	{{!-- <p class="caption">asdf</p> --}}
+	
+
+	<figure>
+  		<p><img class="full-img" src="st-tropez.jpg"/>
+  		<figcaption style="
+		  	float: right;
+    width: 30%;
+    border: thin #5a5a5a solid;
+    margin: 0.5em;
+    padding: 0.5em;
+    text-align: center;
+    font-style: italic;
+    font-size: smaller;
+    text-indent: 0;
+    background: white;
+    max-height: 80%;
+    bottom: 5%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0%) scale(1);
+    transition: all 0.25s ease-out;
+    color: black;
+			"
+		>
+			<div class="row" >
+				<div class="col">
+					絵名：testName<br/>
+					作成日時：2021/10/6<br/>
+					サイズ：33MB<br/>
+				</div>
+				<div class="col">
+					大きさ：3840ｘ2160<br/>
+					場所：Tokyo<br/>
+					金額：２０万<br/>
+				</div>
+			</div>
+    		
+		</figcaption>
+	</figure>
+
+
 	<div id="nextBtnSlide">></div>
 </div>
 
@@ -194,3 +243,4 @@
 
 <script src="/js/videoRecord.js"></script>
 <script src="/js/videoStream.js"></script>
+
