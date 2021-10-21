@@ -70,7 +70,7 @@ marquee {
     color: #f8f9fa;
 }
 
-.lightMode .descriptionTxt  {
+.darkMode .descriptionTxt  {
     color: white;
 }
 
@@ -259,6 +259,27 @@ pre { white-space: pre-wrap; }
 .modal-body {
     padding: 1px;
 }
+
+figcaption  {
+    float: right;
+    width: 30%;
+    border: thin #5a5a5a solid;
+    margin: 0.5em;
+    padding: 0.5em;
+    text-align: center;
+    font-style: italic;
+    font-size: smaller;
+    text-indent: 0;
+    background: white;
+    max-height: 80%;
+    bottom: 5%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0%) scale(1);
+    transition: all 0.25s ease-out;
+    color: black;
+}
+
 
 /* 
 video::-webkit-media-controls-fullscreen-button {
