@@ -7,13 +7,13 @@ export default class SetClass {
 	constructor()  {
 		this.data = null;
 
-      postData('/set', {  eventId: eventId })
-      .then(data => { 
-         let resData = JSON.parse(data.resSet);
-         this.data = resData;
-         this.setDisplay();
-         this.eventHandle();
-      });
+		postData('/set', {  eventId: eventId })
+		.then(data => { 
+			let resData = JSON.parse(data.resSet);
+			this.data = resData;
+			this.setDisplay();
+			this.eventHandle();
+		});
 	}
 
 	setDisplay()  {
@@ -25,7 +25,7 @@ export default class SetClass {
 		$("#setList").html("");
       		this.data.map(function(item, i)  {
 			$("#setList").append(
-				'<a setFolderName="'+ item.folder_name +'" setYearSt="'+ item.set_ystr +'"  setYearEd="'+ item.set_yend +'" class="list-group-item list-group-item-action flex-column align-items-start">'+
+				'<a pattern="'+ item.pattern +'" setFolderName="'+ item.folder_name +'" setYearSt="'+ item.set_ystr +'"  setYearEd="'+ item.set_yend +'" class="list-group-item list-group-item-action flex-column align-items-start">'+
 					'<div id="setTitle" class="d-flex w-100 justify-content-between">'+
 						'<h5 class="mb-1">'+ item.set_title +'</h5>'+
 					'</div>'+
@@ -41,6 +41,8 @@ export default class SetClass {
 			$("#setList a").removeClass("setActive");
 			$(this).addClass("setActive");
 			let setFolderName = $(this).attr("setFolderName");
+			let pattern = $(this).attr("pattern");
+
 			let setYearSt = $(this).attr("setYearSt");
 			let setYearEd = $(this).attr("setYearEd");
 			$("#titleSetYear").html(setYearSt+" - "+setYearEd);
@@ -48,14 +50,14 @@ export default class SetClass {
 			//tur zuur bichiw
 			$("body").removeClass();
 
-			switch (setFolderName) {
-				case "set1":
+			switch (pattern) {
+				case "dark":
 					$("body").addClass("darkMode");
 					break;
-				case "set2":
+				case "white":
 					$("body").addClass("lightMode");
 					break;
-				case "set3":
+				case "yellow":
 					$("body").addClass("yellowMode");
 					break;
 				default:
@@ -71,8 +73,6 @@ export default class SetClass {
 
 				// let aaa = 'data:image/jpeg;base64,' + data.thumbImg;
 				// $("body").prepend("<img  src="+ aaa +" />");
-
-				// console.log(data);
 
 				let filesObjects = JSON.parse(data.filesObjects);
 				new PictureSlideClass({

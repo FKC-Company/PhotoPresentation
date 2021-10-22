@@ -3,7 +3,6 @@
 import SetClass from './setClass.js';
 
 // var SetClass = require("./setClass");
-
 var set = new SetClass();
 
 var windowHeight =  window.outerHeight;
