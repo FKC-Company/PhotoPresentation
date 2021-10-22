@@ -29,24 +29,4 @@ $(".switchBtn input").on("click", function()  {
 	}	
 });
 
-$("#changeTheme").on("change", function()  {
-	var mode = $(this).val();
-	$("body").removeClass();
-
-	switch (mode) {
-		case "dark":
-			$("body").addClass("darkMode");
-			break;
-		case "light":
-			$("body").addClass("lightMode");
-			break;
-		case "yellow":
-			$("body").addClass("yellowMode");
-			break;
-		default:
-			$("body").addClass("darkMode");
-			break;
-	}
-});
-
 

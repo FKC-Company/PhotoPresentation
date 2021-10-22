@@ -44,6 +44,25 @@ export default class SetClass {
 			let setYearSt = $(this).attr("setYearSt");
 			let setYearEd = $(this).attr("setYearEd");
 			$("#titleSetYear").html(setYearSt+" - "+setYearEd);
+			
+			//tur zuur bichiw
+			$("body").removeClass();
+
+			switch (setFolderName) {
+				case "set1":
+					$("body").addClass("darkMode");
+					break;
+				case "set2":
+					$("body").addClass("lightMode");
+					break;
+				case "set3":
+					$("body").addClass("yellowMode");
+					break;
+				default:
+					$("body").addClass("darkMode");
+					break;
+			}
+
 
 			postData('/files', {
 				eventId: eventId,
@@ -55,14 +74,14 @@ export default class SetClass {
 
 				// console.log(data);
 
-            let filesObjects = JSON.parse(data.filesObjects);
-            new PictureSlideClass({
-				mainPicPath: data.mainPicPath,
-				filesObjects: filesObjects,
-				proPic: data.proPic
-			});
+				let filesObjects = JSON.parse(data.filesObjects);
+				new PictureSlideClass({
+					mainPicPath: data.mainPicPath,
+					filesObjects: filesObjects,
+					proPic: data.proPic
+				});
 
-            new TextClass({
+				new TextClass({
 					marquee: data.marqueeTxt,
 					description: data.descriptionTxt
 				});

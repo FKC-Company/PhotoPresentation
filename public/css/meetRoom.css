@@ -1,9 +1,16 @@
-body  {
-    /* background-color: #212529; */
-}
   
 body.darkMode  {
     background-color: #212529 !important;
+}
+
+.row {
+    --bs-gutter-x: 0rem ;
+}
+marquee {
+    padding: 8px;
+    font-size: 20px;
+    background-color: #7a7e82;
+    color: #f8f9fa;
 }
 
 #js-local-stream  {
@@ -17,7 +24,6 @@ body.darkMode  {
     background: #0000007d;
     display: none;
 }
-
 #loadingMsg {
     float: left;
     padding-left: 80px;
@@ -27,53 +33,22 @@ body.darkMode  {
     margin: 0px 0px 0px 0px;
     border-radius: 0px;
 }
-
 .spinnerCustom  {
     border-width: 2px !important;
 }
-
 .darkMode nav {
     background-color: #41464b;
 }
-
-#changeTheme  {
-    background: #6c757d;
-    color: white;
-    padding: 3px;
-}
-
-.darkMode .row {
-    /* background-color: #212529; */
-}
-
-.darkMode .row .col {
-    /* color: white; */
-}
-
 .darkMode .swiperBody  {
     background-color: #212529;
 }
-
 .uploadBtn  {
     background-color: #6c757d;
     color:white;
 }
-
-
-.row {
-    --bs-gutter-x: 0rem ;
-}
-marquee {
-    padding: 8px;
-    font-size: 20px;
-    background-color: #7a7e82;
-    color: #f8f9fa;
-}
-
 .darkMode .descriptionTxt  {
     color: white;
 }
-
 .darkMode marquee {
     background-color: #41464b;
 }
@@ -82,27 +57,24 @@ marquee {
     color:#fff !important;
     background-color:#6c757d !important;
 }
+
 /* --------------   light mode  --------------------   */
 .lightMode .navbar, .yellowMode .navbar  {
     background-color:#41464b;
 }
-
 .lightMode marquee, .yellowMode marquee   {
     background-color: #8b9095;
     color: white;
 }
-
 .lightMode .setActive, .yellowMode .setActive {
     color: #fff !important;
     background-color: #808891 !important;
 }
-
 .lightMode .swiperBody  {
     background-color: white;
 }
 
 /* --------------   yellow mode  --------------------   */
-
 .yellowMode, .yellowMode .swiperBody {
     background-color: #ffefbd;
 }
@@ -111,11 +83,16 @@ marquee {
     background-color: #ffefbd;
 }
 
+/* ---------------- css -----------------   */
+#changeTheme  {
+    background: #6c757d;
+    color: white;
+    padding: 3px;
+}
 .list-group-item  {
     border: 0px;
     border-bottom: 1px solid rgba(0,0,0,.125) !important;
 }
-
 .swiperBody {
     display: flex;
     justify-content: center;
@@ -211,10 +188,9 @@ marquee {
     height: 100%;
     object-fit: cover;
 }
-
-
-
-pre { white-space: pre-wrap; }
+pre { 
+    white-space: pre-wrap; 
+}
 
 #descriptionTxt {
     white-space: pre-wrap;
