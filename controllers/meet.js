@@ -213,18 +213,12 @@ exports.files = async (req, res) => {
 		fileNames = fs.readdirSync(publicPath +'/slideData');
 	}
 	catch (err)  {
-		//nmk
-		// return res.json({
+		// console.log("error -------------------");
+
+		// return res.render('meet/meetRoom',{
 		// 	status: 404,
-		// 	message: "File not found"
+		// 	message: 'Create a meeting room'
 		// });
-
-		console.log("error -------------------");
-
-		return res.render('meet/meetRoom',{
-			status: 404,
-			message: 'Create a meeting room'
-		});
 	}
 
 	async function readFile(path)  {
@@ -243,25 +237,24 @@ exports.files = async (req, res) => {
 
 	async function files()  {
 		let filesObjects = [];
+
 		await Promise.all(fileNames.map(async (file) => {
-			let data = {
-				path: dataPath+'/slideData/' + file,
-				thumbnailPath: dataPath+'/slideThumbnail/thumb_' + file,
-				fileName : file,
-				fileType: "picture"
+			let filePath = dataPath+'/slideData/' + file;
+			let fileExt = file.split(".")[1];
+
+			if(fileExt === "txt")  {
+				
 			}
 
-			filePath = dataPath+'/slideData/' + file;
-			if(!isImage(filePath)) {
-				data.fileType = "video";
-				data.thumbnailPath = dataPath+'/slideThumbnail/thumb_' + file.split(".")[0] + '.jpg';
+			if(isImage(filePath) || fileExt === "mp4") {
+				filesObjects.push({
+					path: dataPath+'/slideData/' + file,
+					thumbnailPath: dataPath+'/slideThumbnail/thumb_' + file,
+					fileName : file,
+					fileType: fileExt === "mp4" ? "video" : "picture"
+				});
 			}
-		
-			filesObjects.push(data);
 		}));
-
-
-		console.log(filesObjects)
 
 		return filesObjects;
 	}
