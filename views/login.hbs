@@ -1,8 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 	{{> header }}
-	<body>
-		<div class="container mt-5">
+	<body id="loginBody">
+		
+		<div class="container mt-2">
+			<div class="row">
+
+				<div class="col-6 ">
+
+					<div style="
+						padding: 9px 0px 13px 0px;
+						border: 1px solid red;
+						background-color: #ebe8e8;
+						text-align: center;
+						font-size: 30px;
+						position: relative;
+    					overflow: hidden;
+
+						border-top-right-radius: 13px;
+    					border-bottom-right-radius: 13px;
+    					border-bottom-left-radius: 13px;
+					">
+						<div style="    
+							background: #dc3545;
+							width: 63px;
+							height: 152px;
+							position: absolute;
+							margin: -71px 0px 0px -11px;
+							transform: rotate(56deg);">
+						</div>
+						<b>催事 システム</b>
+					</div>
+				</div>
+
+				<div class="col-2 ">
+				</div>
+
+				<div class="col-4 ">
+					<div style="    
+						background: white;
+						border: 1px solid #ffc107;
+						height: 98%;
+						width: 100%;
+						opacity: 0.4;"
+					></div>
+				</div>
+				<div class="col-4 ">
+					<img src="data/meet_1617675350_1/profilePicture/photo-1500080209535-717dd4ebaa6b.jpg" style="margin: 40px 0px 20px 0px; border:1px solid red;" class="rounded mx-auto d-block" alt="..." width="80%">
+					<div class="bg-light text-center p-2">園田 泰司</div>
+					<div class="text-white text-center w-50" 
+						style="
+							border:1px solid red; 
+							background-color: gray; 
+							font-size: 26px; 
+							margin: 1% 1% 1% 23%;
+							"
+						>
+						施 主
+					</div>
+					<div class="bg-light text-center p-2">園田 泰司</div>
+				</div>
+				<div class="col-8 ">
+					<div class="alert alert-info text-center" role="alert" style="margin:40px; border: 1px solid red; font-size: 20px;">
+						<span><b>ログインしてください。</b></span>
+					</div>
+
+					<form action="/auth/login" method="POST" class="p-5">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-3">
+										<span class="text-white" style="font-size: 23px;">ユーザー名</span>
+								</div>
+								<div class="col-9">
+									<input type="email" value="unyamka@gmail.com" class="form-control p-3" id="email" name="email" placeholder="Email" required style="border: 1px solid red;">
+								</div>
+							</div>
+						</div>
+						<div class="form-group mt-4">
+							<div class="row">
+								<div class="col-3">
+									<span class="text-white" style="font-size: 23px;">パスワード</span>
+								</div>
+								<div class="col-9">
+									<input type="password" class="form-control p-3" value="123" id="password" name="password" placeholder="Password" required style="border: 1px solid red;"> 
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group mt-4">
+							{{!-- <a href="/" type="button" class=" btn btn-outline-dark btn-sm m-1" >< Back</a> --}}
+							<button type="submit" class="btn btn-success m-1" style="float:right">&nbsp;&nbsp;Login&nbsp;&nbsp;</button>
+							<a href="users/register" type="button" class="btn btn-dark m-1" style="float:right">Register</a>
+						</div>
+					</form>
+
+				</div>
+				<div class="col">
+					<div style="background: #e1ddc1;
+						border: 1px solid red;
+						margin: 13px 0px 22px 0px;
+						border-radius: 21px;
+						padding: 20px;
+						font-size: 19px;
+						color: #5e5b5b;
+    					font-weight: bold;
+						">
+						【ご案内】<br/>
+						ギャラリー 及び 会場へは開催日時以降に入場ができます。<br/>
+						会場確認は主催者様のみ行えるようになっております。<br/>
+						特定のご関係者様は 展示用のお写真・コメントを登録できます。
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{{!-- <div class="container mt-5">
 			<div class="row">
 				<div class="col-md-10 offset-md-1 box-shadow">
 					<div class="card shadow-lg mt-5 bg-white rounded">
@@ -34,7 +147,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</div> --}}
+		{{!-- </div> --}}
 	</body>
 </html>

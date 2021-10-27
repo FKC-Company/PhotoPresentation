@@ -1,12 +1,17 @@
 /* normalize */
 body { margin: 0; }
 html,body {
-	height: 100%;
+	/* height: 100%; */
  }
 
 /* global styles */
 video {
 	background-color: #111;
+}
+
+
+#loginBody  {
+	background: rebeccapurple;
 }
 
 .heading {

@@ -260,6 +260,9 @@ exports.files = async (req, res) => {
 			filesObjects.push(data);
 		}));
 
+
+		console.log(filesObjects)
+
 		return filesObjects;
 	}
 

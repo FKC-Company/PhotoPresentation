@@ -13,6 +13,7 @@ export default class PictureSlideClass  {
 
 	setDisplay()  {
 		$("#slideBox").html("");
+
 		this.filesObjects.map(function(item, i)  {
 			if(item.fileType === "picture")  {
 				$("#slideBox").append(
