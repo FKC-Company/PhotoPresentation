@@ -1,203 +1,204 @@
-
-const fs = require('fs');
+const fs = require("fs");
 const { m_event, m_set } = require("../models");
 
-const multer = require('multer');
-const sharp = require('sharp');
-const path = require('path');
-const isImage = require('is-image');
+const multer = require("multer");
+const sharp = require("sharp");
+const path = require("path");
+const isImage = require("is-image");
 
 exports.index = (req, res) => {
-	return res.render('index', {
-		_SERVER_ : process.env.SERVER_DOMAIN
-	});
+  return res.render("index", {
+    _SERVER_: process.env.SERVER_DOMAIN,
+  });
 };
 
 exports.login = (req, res) => {
-	res.render('login');
+  res.render("login");
 };
 
-exports.lists = async (req, res)  => {  // neriig solih
-	const EventRows = await m_event.findAll();
-	return res.render('meet/lists',{
-		EventRows: EventRows
-	});
+exports.lists = async (req, res) => {
+  // neriig solih
+  const EventRows = await m_event.findAll();
+  return res.render("meet/lists", {
+    EventRows: EventRows,
+  });
 };
 
-exports.registerWin = async(req, res) => {
-	// if(!req.session.user)  {
-	// 	return res.status(401).redirect("/login");
-	// }
+exports.registerWin = async (req, res) => {
+  // if(!req.session.user)  {
+  // 	return res.status(401).redirect("/login");
+  // }
 
-	console.log("register")
+  console.log("register");
 
-	return res.render('meet/meetRegisterWin', null);
+  return res.render("meet/meetRegisterWin", null);
+};
 
-}
+exports.createRoom = async (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).redirect("/login");
+  }
 
-exports.createRoom = async (req, res) =>  {
-	if(!req.session.user)  {
-		return res.status(401).redirect("/login");
-	}
+  const userId = req.session.user.user_id;
+  const resEvent = await m_event.findOne({ where: { user_id: userId } });
 
-	const userId = req.session.user.user_id;
-	const resEvent = await m_event.findOne({ where: { user_id: userId } });
+  // Herwee omno oroo uuseed orhison bol...
+  if (resEvent !== null) {
+    let eventId = resEvent.event_id;
+    let roomName = resEvent.room_name;
+    let isVideo = resEvent.is_video;
 
-	// Herwee omno oroo uuseed orhison bol...
-	if(resEvent !== null)  {
-		let eventId = resEvent.event_id;
-		let roomName = resEvent.room_name;
-		let isVideo = resEvent.is_video;
+    req.session.eventId = eventId;
+    const eventRow = await m_event.findOne({ where: { event_id: eventId } });
+    let dataRootFolerName = eventRow.folder_name;
 
-		req.session.eventId = eventId;
-		const eventRow = await m_event.findOne({ where: { event_id: eventId } });
-		let dataRootFolerName  = eventRow.folder_name;
+    req.session.eventFolderNameFullPath = "./public/data/" + dataRootFolerName;
+    req.session.eventFolderDataPath = "/data/" + dataRootFolerName;
 
-		req.session.eventFolderNameFullPath = './public/data/'+ dataRootFolerName;
-		req.session.eventFolderDataPath = '/data/'+ dataRootFolerName;
+    let dataFullPath = req.session.eventFolderNameFullPath;
+    let dataPath = req.session.eventFolderDataPath;
 
-		let dataFullPath = req.session.eventFolderNameFullPath;
-		let dataPath = req.session.eventFolderDataPath;
+    let proPicPath = fs.readdirSync(dataFullPath + "/profilePicture");
+    let dataObj = {
+      role: "Creater",
+      isCreater: true,
+      message: "Already",
+      yourName: "Hoster",
+      eventId: eventId,
+      isVideo: JSON.stringify({ status: false }),
+      roomName: roomName,
+      profilePicPath: dataPath + "/profilePicture/" + proPicPath,
+      _SERVER_: process.env.SERVER_DOMAIN,
+    };
 
-		let proPicPath = fs.readdirSync(dataFullPath + '/profilePicture');
-		let dataObj = {
-			role: "Creater",
-			isCreater: true, 
-			message: 'Already',
-			yourName: 'Hoster',
-			eventId : eventId,
-			isVideo : JSON.stringify({"status": false}),
-			roomName: roomName,
-			profilePicPath: dataPath + '/profilePicture/' + proPicPath,
-			_SERVER_ : process.env.SERVER_DOMAIN
-		}
+    if (isVideo) {
+      let videoPath = fs.readdirSync(dataFullPath + "/video");
+      dataObj.isVideo = JSON.stringify({
+        status: true,
+        path: dataPath + "/video/" + videoPath,
+      });
+    }
 
-		if(isVideo)  {
-			let videoPath = fs.readdirSync(dataFullPath + '/video');
-			dataObj.isVideo = JSON.stringify({
-				"status": true,
-				"path": dataPath + "/video/" + videoPath
-			});
-		}
+    return res.render("meet/meetRoom", dataObj);
+  }
 
-		return res.render('meet/meetRoom', dataObj);
-	}
+  // Shineer oroo vvsgene-----------------------------.
+  let newRoomName = Math.random()
+    .toString(36)
+    .replace(/[^a-z]+/g, "")
+    .substr(0, 10);
+  let unixTimestamp = Math.floor(new Date().getTime() / 1000);
+  let newFolerName = "meet_" + unixTimestamp + "_" + userId;
 
-	// Shineer oroo vvsgene-----------------------------.
-	let newRoomName = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10);
-	let unixTimestamp = Math.floor(new Date().getTime()/1000);
-	let newFolerName = 'meet_'+ unixTimestamp + "_" + userId;
+  req.session.eventFolderNameFullPath = "./public/data/" + newFolerName;
+  req.session.eventFolderDataPath = "/data/" + newFolerName;
 
-	req.session.eventFolderNameFullPath = './public/data/' + newFolerName;
-	req.session.eventFolderDataPath = '/data/'+ newFolerName;
+  let dataFullPath = req.session.eventFolderNameFullPath;
+  let dataPath = req.session.eventFolderDataPath;
 
-	let dataFullPath = req.session.eventFolderNameFullPath;
-	let dataPath = req.session.eventFolderDataPath;
+  fs.mkdir(dataFullPath, (err) => {
+    if (err) {
+      return console.error(err);
+    }
+    console.log("Directory created successfully!");
+  });
 
-	fs.mkdir(dataFullPath, (err) => {
-		if (err) {
-			return console.error(err);
-		}
-		console.log('Directory created successfully!');
-	});
+  // DB insert ------------------
 
-	// DB insert ------------------
+  /* ene deer joohon hiih ym bgaa  !!!!!*/
 
+  // eventTable.user_id = userId;
+  // eventTable.room_name = newRoomName;
+  // eventTable.folder_name = newFolerName;
+  // await eventTable.insert();
+  // let newEventId = eventTable.event_id;
+  // eventTable.event_id = newEventId;
+  // req.session.eventId = newEventId;
 
-	/* ene deer joohon hiih ym bgaa  !!!!!*/
-
-	// eventTable.user_id = userId;
-	// eventTable.room_name = newRoomName;
-	// eventTable.folder_name = newFolerName;
-	// await eventTable.insert();
-	// let newEventId = eventTable.event_id;
-	// eventTable.event_id = newEventId;
-	// req.session.eventId = newEventId;
-
-	let proPicPath = fs.readdirSync(dataFullPath + '/profilePicture');
-	if(newEventId > 0)  {
-		console.log("New room created...");
-		return res.render('meet/meetRoom',{
-			role: "Creater",
-			isCreater: true, 
-			message: 'Create a meeting room',
-			yourName: 'Hoster',
-			eventId : newEventId,
-			roomName: newRoomName,
-			profilePicPath: dataPath  + '/profilePicture/' + proPicPath,
-			_SERVER_ : process.env.SERVER_DOMAIN
-		});
-	}
+  let proPicPath = fs.readdirSync(dataFullPath + "/profilePicture");
+  if (newEventId > 0) {
+    console.log("New room created...");
+    return res.render("meet/meetRoom", {
+      role: "Creater",
+      isCreater: true,
+      message: "Create a meeting room",
+      yourName: "Hoster",
+      eventId: newEventId,
+      roomName: newRoomName,
+      profilePicPath: dataPath + "/profilePicture/" + proPicPath,
+      _SERVER_: process.env.SERVER_DOMAIN,
+    });
+  }
 };
 
 exports.joinRoom = async (req, res) => {
-	let { yourName, roomName } = req.body;
+  let { yourName, roomName } = req.body;
 
-	const resEvent = await m_event.findOne({ where: { room_name: roomName } });
-	if(resEvent === null)  {
-		return res.render('meet/join', {
-			status: 'warning',
-			message: 'No such room found'
-		});
-	}
+  const resEvent = await m_event.findOne({ where: { room_name: roomName } });
+  if (resEvent === null) {
+    return res.render("meet/join", {
+      status: "warning",
+      message: "No such room found",
+    });
+  }
 
-	let eventId = resEvent.event_id;
-	let dataRootFolerName  = resEvent.folder_name;
-	let isVideo = resEvent.is_video;
+  let eventId = resEvent.event_id;
+  let dataRootFolerName = resEvent.folder_name;
+  let isVideo = resEvent.is_video;
 
-		req.session.eventFolderNameFullPath = './public/data/' + dataRootFolerName;
-		req.session.eventFolderDataPath = '/data/'+ dataRootFolerName;
+  req.session.eventFolderNameFullPath = "./public/data/" + dataRootFolerName;
+  req.session.eventFolderDataPath = "/data/" + dataRootFolerName;
 
-	let dataFullPath = req.session.eventFolderNameFullPath;
-	let dataPath = req.session.eventFolderDataPath;
+  let dataFullPath = req.session.eventFolderNameFullPath;
+  let dataPath = req.session.eventFolderDataPath;
 
-	let proPicPath = fs.readdirSync(dataFullPath + '/profilePicture');
-	let dataObj = {
-		role: "Joiner",
-		isCreater: false, 
-		message: 'Joined',
-		eventId: eventId,
-		roomName: roomName,
-		yourName: yourName,
-		isVideo : JSON.stringify({"status": false}),
-		profilePicPath: dataPath + '/profilePicture/' + proPicPath,
-		_SERVER_ : process.env.SERVER_DOMAIN
-	}
+  let proPicPath = fs.readdirSync(dataFullPath + "/profilePicture");
+  let dataObj = {
+    role: "Joiner",
+    isCreater: false,
+    message: "Joined",
+    eventId: eventId,
+    roomName: roomName,
+    yourName: yourName,
+    isVideo: JSON.stringify({ status: false }),
+    profilePicPath: dataPath + "/profilePicture/" + proPicPath,
+    _SERVER_: process.env.SERVER_DOMAIN,
+  };
 
-	if(isVideo)  {
-		let videoPath = fs.readdirSync(dataFullPath + '/video');
-		dataObj.isVideo = JSON.stringify({
-			"status": true,
-			"path":  dataPath + "/video/" + videoPath
-		});
-	}
+  if (isVideo) {
+    let videoPath = fs.readdirSync(dataFullPath + "/video");
+    dataObj.isVideo = JSON.stringify({
+      status: true,
+      path: dataPath + "/video/" + videoPath,
+    });
+  }
 
-	return res.render('meet/meetRoom', dataObj);
+  return res.render("meet/meetRoom", dataObj);
 };
 
 exports.joinWin = (req, res) => {
-	let { urlJoin, roomName, yourName }  = req.query;
+  let { urlJoin, roomName, yourName } = req.query;
 
-	urlJoin = parseInt(urlJoin);
-	if(!urlJoin) {
-		return res.render('meet/join');
-	}
+  urlJoin = parseInt(urlJoin);
+  if (!urlJoin) {
+    return res.render("meet/join");
+  }
 
-	res.render('meet/join', {
-		"isUrlJoin": urlJoin,
-		"roomName": roomName, 
-		"yourName": yourName
-	});
+  res.render("meet/join", {
+    isUrlJoin: urlJoin,
+    roomName: roomName,
+    yourName: yourName,
+  });
 };
 
 exports.set = async (req, res) => {
-	let { eventId } = req.body;
+  let { eventId } = req.body;
 
-	const resSet = await m_set.findAll({ where: { event_id: eventId } });
-	res.json({
-		status: "success",
-		resSet: JSON.stringify(resSet)
-	});
+  const resSet = await m_set.findAll({ where: { event_id: eventId } });
+  res.json({
+    status: "success",
+    resSet: JSON.stringify(resSet),
+  });
 };
 
 exports.files = async (req, res) => {
