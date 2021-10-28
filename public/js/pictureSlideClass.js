@@ -19,7 +19,7 @@ export default class PictureSlideClass  {
 				$("#slideBox").append(
 					'<div class="swiper-slide" type="picture">'+
 						'<div class="contentBody" style="width:100%">'+
-							'<img src="'+ item.thumbnailPath +'" data-src="'+ item.path +'" realContentType="picture" alt="" />'+
+							'<img src="'+ item.thumbnailPath +'" data-src="'+ item.path +'" realContentType="picture" alt="" txt="' + item.txt + '"/>'+
 						'</div>'+
 					'</div>'
 				);
@@ -28,7 +28,7 @@ export default class PictureSlideClass  {
 				$("#slideBox").append(	
 					'<div class="swiper-slide" type="video">'+
 						'<div class="contentBody" style="position:relative;">'+
-							'<img src="'+ item.thumbnailPath +'" data-src="'+ item.path +'" realContentType="video" alt="" />'+
+							'<img src="'+ item.thumbnailPath +'" data-src="'+ item.path +'" realContentType="video" alt="" txt="' + item.txt + '"/>'+
 							'<div id="videoPlayBtn">'+
 								'<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">'+
 									'<path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>'+
@@ -150,6 +150,7 @@ export default class PictureSlideClass  {
 			$(this.clickedSlide).addClass('swiper-slide-active');
 			let type = $(this.clickedSlide).attr("type");
 			let originaURL = $(".contentBody img", this.clickedSlide).attr("data-src");
+			let imgText = $(".contentBody img", this.clickedSlide).attr("txt");
 
 			if(type === "picture")  {
 				$(".full-video").hide();
@@ -159,7 +160,7 @@ export default class PictureSlideClass  {
 				$(".full-img").hide();
 				$(".full-video").attr("src", originaURL).show();
 			}
-
+			$("#textFig").html('<div class="col">' + imgText + "</div>");
 			mySwiper.update();
 			mySwiper.autoplay.stop();
 		});
@@ -186,6 +187,7 @@ $("#nextBtnSlide").on("click", function()  {
 	let activeSlide = $("#slideBox .swiper-slide-active");
 	let slideActiveType = activeSlide.attr("type");
 	let nextPath = $(".contentBody img", activeSlide).attr("data-src");
+	let imgText = $(".contentBody img", activeSlide).attr("txt");
 
 	if(slideActiveType === "video")  {
 		$(".modal1 .full-img").hide();
@@ -195,6 +197,7 @@ $("#nextBtnSlide").on("click", function()  {
 		$(".modal1 .full-video").hide();
 		$(".full-img.open").show().attr("src", nextPath);
 	}
+	$("#textFig").html('<div class="col">' + imgText + "</div>");
 	
 });
 
@@ -203,6 +206,7 @@ $("#prevBtnSlide").on("click", function()  {
 	let activeSlide = $("#slideBox .swiper-slide-active");
 	let slideActiveType = activeSlide.attr("type");
 	let prevPath = $(".contentBody img", activeSlide).attr("data-src");
+	let imgText = $(".contentBody img", activeSlide).attr("txt");
 
 	if(slideActiveType === "video")  {
 		$(".modal1 .full-img").hide();
@@ -213,5 +217,6 @@ $("#prevBtnSlide").on("click", function()  {
 		$(".modal1 .full-video").hide();
 		$(".full-img.open").show().attr("src", prevPath);
 	}
+	$("#textFig").html('<div class="col">' + imgText + "</div>");
 	
 });

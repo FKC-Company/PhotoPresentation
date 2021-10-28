@@ -391,3 +391,7 @@ video::-webkit-media-controls, video::-moz-media-controls, video::-o-media-contr
     -webkit-animation: .65s linear infinite spinner-grow;
     display: none;
 }
+.slideImgTxt {
+    white-space: pre-wrap;
+    text-align: left;
+}

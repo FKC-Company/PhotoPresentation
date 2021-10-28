@@ -239,20 +239,27 @@ exports.files = async (req, res) => {
 		let filesObjects = [];
 
 		await Promise.all(fileNames.map(async (file) => {
-			let filePath = dataPath+'/slideData/' + file;
-			let fileExt = file.split(".")[1];
+		let filePath = dataPath + "/slideData/" + file;
+		let fileName = file.split(".")[0];
+		let fileExt = file.split(".")[1];
+		let data;
 
-			if(fileExt === "txt")  {
-				
-			}
-
-			if(isImage(filePath) || fileExt === "mp4") {
-				filesObjects.push({
-					path: dataPath+'/slideData/' + file,
-					thumbnailPath: dataPath+'/slideThumbnail/thumb_' + file,
-					fileName : file,
-					fileType: fileExt === "mp4" ? "video" : "picture"
-				});
+		if(isImage(filePath) || fileExt === "mp4") {
+		data = {
+          path: dataPath + "/slideData/" + file,
+          thumbnailPath: dataPath + "/slideThumbnail/thumb_" + file,
+          fileName: file,
+          txt: "Data Not Found",
+          fileType: fileExt === "mp4" ? "video" : "picture",
+        };
+        try {
+          if (fs.existsSync(publicPath + "/slideData/" + fileName + ".txt")) {
+            data.txt = await readFile(publicPath + "/slideData/" + fileName + ".txt");
+          }
+        } catch (err) {
+          console.error(err);
+        }
+        filesObjects.push(data);
 			}
 		}));
 
