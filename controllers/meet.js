@@ -267,8 +267,12 @@ exports.files = async (req, res) => {
 			}
 		  })
 		);
-	
-		console.log(filesObjects);
+
+	    //fileName eer erembelneee 
+		filesObjects.sort((a,b)=>{
+			return parseInt(a.fileName.split('.')[0]) - parseInt(b.fileName.split('.')[0]);
+		});
+
 		return filesObjects;
 	  }
 
