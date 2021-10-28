@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var mySwiper;
 
 export default class PictureSlideClass  {
@@ -19,7 +19,7 @@ export default class PictureSlideClass  {
 				$("#slideBox").append(
 					'<div class="swiper-slide" type="picture">'+
 						'<div class="contentBody" style="width:100%">'+
-							'<img src="'+ item.thumbnailPath +'" data-src="'+ item.path +'" realContentType="picture" alt="" txt="' + item.txt + '"/>'+
+							'<img src="'+ item.thumbnailPath +'" data-src="'+ item.path +'" realContentType="picture"  txt="' + item.txt + '"alt="" />'+
 						'</div>'+
 					'</div>'
 				);
@@ -151,7 +151,6 @@ export default class PictureSlideClass  {
 			let type = $(this.clickedSlide).attr("type");
 			let originaURL = $(".contentBody img", this.clickedSlide).attr("data-src");
 			let imgText = $(".contentBody img", this.clickedSlide).attr("txt");
-
 			if(type === "picture")  {
 				$(".full-video").hide();
 				$(".full-img").attr("src", originaURL).show();
@@ -160,7 +159,9 @@ export default class PictureSlideClass  {
 				$(".full-img").hide();
 				$(".full-video").attr("src", originaURL).show();
 			}
+
 			$("#textFig").html('<div class="col">' + imgText + "</div>");
+			
 			mySwiper.update();
 			mySwiper.autoplay.stop();
 		});
@@ -188,7 +189,6 @@ $("#nextBtnSlide").on("click", function()  {
 	let slideActiveType = activeSlide.attr("type");
 	let nextPath = $(".contentBody img", activeSlide).attr("data-src");
 	let imgText = $(".contentBody img", activeSlide).attr("txt");
-
 	if(slideActiveType === "video")  {
 		$(".modal1 .full-img").hide();
 		$(".modal1 .full-video").show().attr("src", nextPath);
@@ -198,7 +198,6 @@ $("#nextBtnSlide").on("click", function()  {
 		$(".full-img.open").show().attr("src", nextPath);
 	}
 	$("#textFig").html('<div class="col">' + imgText + "</div>");
-	
 });
 
 $("#prevBtnSlide").on("click", function()  {
@@ -218,5 +217,4 @@ $("#prevBtnSlide").on("click", function()  {
 		$(".full-img.open").show().attr("src", prevPath);
 	}
 	$("#textFig").html('<div class="col">' + imgText + "</div>");
-	
 });
